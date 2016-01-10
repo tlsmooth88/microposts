@@ -14,7 +14,9 @@
                 <br />
                 <%= link_to "Followers", followers_user_path(@user) %>
                 <br />
+                <% if logged_in? && current_user != @user %>
                 <%= link_to "View my profile / my microposts", current_user %>
+                <% end %>
                 <br />
             </h1>
         </section>
@@ -23,12 +25,9 @@
         <% if @user.follower_users.any? %>
             <h3>Followers (<%= @user.follower_users.count %>)</h3>
             <%= page_entries_info @followerusers %>
-            <% @followerusers.each do |u| %>
-                <li class="clearfix">
-                    <%= gravatar_for(u, size: 50) %>
-                    <span class="user"><%= link_to u.name, u %></span>
-                </li>
-            <% end %>
+            <ol class="followings-followers">
+                <%= render @followerusers %>
+            </ol>
             <%= paginate @followerusers %>
         <% end %>
     </div>
