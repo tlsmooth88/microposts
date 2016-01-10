@@ -14,7 +14,7 @@
                 <br />
                 <%= link_to "Followers", followers_user_path(@user) %>
                 <br />
-                <% if current_user != @user %>
+                <% if logged_in? && current_user != @user %>
                 <%= link_to "View my profile / my microposts", current_user %>
                 <% end %>
                 <br />
