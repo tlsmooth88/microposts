@@ -22,12 +22,14 @@
     <div class="col-md-8">
         <% if @user.following_users.any? %>
             <h3>Following (<%= @user.following_users.count %>)</h3>
+            <%= page_entries_info @followingusers %>
             <% @followingusers.each do |u| %>
                 <li class="clearfix">
                     <%= gravatar_for(u, size: 50) %>
                     <span class="user"><%= link_to u.name, u %></span>
                 </li>
             <% end %>
+            <%= paginate @followingusers %>
         <% end %>
     </div>
 </div>
